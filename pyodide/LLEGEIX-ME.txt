@@ -1,0 +1,2 @@
+Pyodide 0.27.8 (https://pyodide.org), llicència Mozilla Public License 2.0.
+Fitxers copiats sense canvis del paquet npm «pyodide».

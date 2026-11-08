@@ -1,0 +1,12 @@
+© 2026 Xorigu3r. Tots els drets reservats.
+
+Aquest programari (el codi, el bytecode, les dades, els textos, el logotip i les imatges) és propietat de
+Xorigu3r. No es pot copiar, modificar, distribuir, publicar, descompilar ni fer-ne obres derivades, en tot
+o en part, sense permís per escrit del titular. Fer-lo servir no dona cap dret sobre el codi.
+
+© 2026 Xorigu3r. Todos los derechos reservados. Este software no se puede copiar, modificar, distribuir,
+publicar, descompilar ni usar para crear obras derivadas, total o parcialmente, sin permiso escrito del titular.
+
+Components de tercers (mantenen la seva pròpia llicència):
+  · Pyodide (public/pyodide/): Mozilla Public License 2.0
+  · Montserrat (public/fonts/): SIL Open Font License 1.1 (fonts/OFL.txt)

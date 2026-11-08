@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0f14">
+<meta name="description" content="XoriguerAPPplans: el teu pla d'entrenament de Xoriguer al mòbil.">
+<title>XoriguerAPPplans</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icones/icona-192.png">
+<link rel="apple-touch-icon" href="icones/apple-180.png">
+<style>
+@font-face { font-family: "Montserrat"; font-weight: 600; src: url("fonts/Montserrat-SemiBold.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Montserrat"; font-weight: 800; src: url("fonts/Montserrat-ExtraBold.ttf") format("truetype"); font-display: swap; }
+:root {
+  --taronja: #ff8a00; --negre: #0b0f14; --fons2: #141a22; --fons3: #1c2430; --vora: #2a3442;
+  --text: #f2f4f7; --suau: #9aa6b5; --verd: #2ecc71; --groc: #f5c518; --vermell: #ff5a52; --blau: #4ea1ff;
+  --r: 14px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--negre); color: var(--text); }
+body { font-family: "Montserrat", system-ui, sans-serif; font-weight: 600; font-size: 15px; line-height: 1.45;
+       padding-bottom: calc(72px + env(safe-area-inset-bottom)); -webkit-tap-highlight-color: transparent; }
+h1, h2, h3 { font-weight: 800; margin: 0; }
+h1 { font-size: 22px; } h2 { font-size: 18px; } h3 { font-size: 15px; }
+a { color: var(--taronja); }
+button, input, select, textarea { font: inherit; color: inherit; }
+
+header { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 10px;
+         padding: calc(10px + env(safe-area-inset-top)) 16px 10px; background: rgba(11,15,20,.94);
+         backdrop-filter: blur(8px); border-bottom: 1px solid var(--vora); }
+header img { width: 34px; height: 34px; border-radius: 8px; }
+header .marca { font-weight: 800; font-size: 17px; letter-spacing: .2px; }
+header .marca b { color: var(--taronja); }
+#estat { margin-left: auto; font-size: 12px; color: var(--suau); display: flex; align-items: center; gap: 6px; }
+#estat .punt { width: 8px; height: 8px; border-radius: 50%; background: var(--groc); }
+#estat.llest .punt { background: var(--verd); }
+#estat.error .punt { background: var(--vermell); }
+
+main { padding: 14px 14px 24px; max-width: 640px; margin: 0 auto; }
+.pantalla { display: none; } .pantalla.activa { display: block; }
+.titol { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin: 4px 2px 12px; }
+.titol small { color: var(--suau); font-size: 13px; }
+
+.targeta { background: var(--fons2); border: 1px solid var(--vora); border-radius: var(--r); padding: 14px; margin-bottom: 12px; }
+.targeta.destacada { border-color: var(--taronja); }
+.etiqueta { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 99px; background: var(--fons3); color: var(--suau); margin: 0 4px 4px 0; }
+.etiqueta.t { background: rgba(255,138,0,.16); color: var(--taronja); }
+.etiqueta.v { background: rgba(46,204,113,.15); color: var(--verd); }
+.etiqueta.b { background: rgba(78,161,255,.15); color: var(--blau); }
+.etiqueta.g { background: rgba(245,197,24,.15); color: var(--groc); }
+.xifres { display: flex; gap: 16px; margin: 8px 0 4px; }
+.xifres div { display: flex; flex-direction: column; }
+.xifres b { font-weight: 800; font-size: 20px; }
+.xifres span { font-size: 12px; color: var(--suau); }
+.bloc { margin-top: 12px; }
+.bloc h4 { margin: 0 0 4px; font-size: 12px; font-weight: 800; color: var(--taronja); text-transform: uppercase; letter-spacing: .6px; }
+.bloc p { margin: 0; white-space: pre-line; }
+.suau { color: var(--suau); font-size: 13px; }
+.avis-pla { color: var(--suau); font-size: 12px; margin-top: 18px; padding: 0 4px; }
+
+.boto { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 10px 16px;
+        border-radius: 12px; border: 1px solid var(--vora); background: var(--fons3); font-weight: 800; cursor: pointer; text-decoration: none; color: var(--text); }
+.boto.principal { background: var(--taronja); border-color: var(--taronja); color: #111; }
+.boto.perill { color: var(--vermell); }
+.boto.ample { width: 100%; }
+.boto:disabled { opacity: .5; }
+.botons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.botons .boto { flex: 1 1 auto; }
+
+.dia { display: flex; gap: 12px; align-items: stretch; padding: 10px 12px; border-radius: 12px; background: var(--fons2);
+       border: 1px solid var(--vora); margin-bottom: 8px; cursor: pointer; }
+.dia.avui { border-color: var(--taronja); }
+.dia .data { width: 46px; text-align: center; flex: none; }
+.dia .data b { display: block; font-size: 20px; font-weight: 800; }
+.dia .data span { font-size: 12px; color: var(--suau); text-transform: uppercase; }
+.dia .ses { flex: 1; min-width: 0; }
+.dia .ses div { display: flex; align-items: center; gap: 8px; }
+.dia .ses div + div { margin-top: 4px; }
+.dia .ses .nom { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.semafor { width: 10px; height: 10px; border-radius: 50%; flex: none; background: var(--vora); }
+.semafor.feta { background: var(--verd); } .semafor.passada { background: var(--vermell); }
+.semafor.avui { background: var(--taronja); } .semafor.adaptada { background: var(--blau); }
+.descans { color: var(--suau); font-size: 13px; }
+.navset { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.navset .boto { min-width: 44px; padding: 8px; }
+.navset .info { flex: 1; text-align: center; }
+
+form label { display: block; font-size: 13px; color: var(--suau); margin: 12px 0 4px; }
+input, select, textarea { width: 100%; min-height: 44px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--vora);
+                          background: var(--fons3); font-size: 16px; }
+textarea { min-height: 70px; }
+.fila { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.fila3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+fieldset { border: 1px solid var(--vora); border-radius: var(--r); margin: 14px 0 0; padding: 4px 12px 12px; }
+legend { font-weight: 800; color: var(--taronja); padding: 0 6px; }
+.check { display: flex; align-items: center; gap: 10px; margin: 12px 0 0; color: var(--text); font-size: 15px; }
+.check input { width: 22px; min-height: 22px; height: 22px; accent-color: var(--taronja); }
+details summary { cursor: pointer; color: var(--taronja); margin-top: 12px; }
+.comarques { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 10px; }
+.comarques .check { margin: 6px 0 0; font-size: 14px; }
+.errors { background: rgba(255,90,82,.12); border: 1px solid var(--vermell); border-radius: 12px; padding: 10px 12px; margin-top: 12px; }
+.errors ul { margin: 0; padding-left: 18px; }
+
+.segment { display: flex; gap: 6px; }
+.segment button { flex: 1; min-height: 44px; border-radius: 10px; border: 1px solid var(--vora); background: var(--fons3); font-weight: 800; }
+.segment button.sel { background: var(--taronja); border-color: var(--taronja); color: #111; }
+.extrems { display: flex; justify-content: space-between; font-size: 12px; color: var(--suau); margin-top: 4px; }
+input[type=range] { padding: 0; accent-color: var(--taronja); background: none; border: 0; }
+.valoracio { margin-top: 14px; padding: 10px 12px; border-radius: 12px; background: var(--fons3); }
+
+nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; display: flex; background: rgba(20,26,34,.97);
+      border-top: 1px solid var(--vora); padding-bottom: env(safe-area-inset-bottom); }
+nav button { flex: 1; background: none; border: 0; padding: 8px 0 10px; color: var(--suau); font-size: 12px; font-weight: 800;
+             display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; }
+nav button .ic { font-size: 20px; line-height: 1.2; }
+nav button.activa { color: var(--taronja); }
+
+.fons-modal { position: fixed; inset: 0; z-index: 10; background: rgba(0,0,0,.6); display: none; align-items: flex-end; justify-content: center; }
+.fons-modal.obert { display: flex; }
+.modal { width: 100%; max-width: 640px; max-height: 92vh; overflow: auto; background: var(--fons2); border-radius: 18px 18px 0 0;
+         border: 1px solid var(--vora); padding: 18px 16px calc(18px + env(safe-area-inset-bottom)); }
+.modal .tancar { float: right; background: none; border: 0; color: var(--suau); font-size: 24px; line-height: 1; cursor: pointer; }
+
+#carrega { text-align: center; padding: 40px 20px; color: var(--suau); }
+.roda { width: 42px; height: 42px; margin: 0 auto 14px; border: 4px solid var(--vora); border-top-color: var(--taronja); border-radius: 50%; animation: gira 1s linear infinite; }
+@keyframes gira { to { transform: rotate(360deg); } }
+#toast { position: fixed; left: 50%; bottom: calc(84px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 20;
+         background: var(--fons3); border: 1px solid var(--vora); padding: 10px 16px; border-radius: 12px; display: none; max-width: 90vw; }
+#toast.visible { display: block; }
+</style>
+</head>
+<body>
+<header>
+  <img src="icones/icona-192.png" alt="">
+  <div class="marca">Xoriguer<b>APP</b>plans</div>
+  <div id="estat"><span class="punt"></span><span id="estat-text"></span></div>
+</header>
+
+<main>
+  <div id="carrega"><div class="roda"></div><div id="carrega-text"></div></div>
+
+  <section id="p-avui" class="pantalla"></section>
+  <section id="p-setmana" class="pantalla"></section>
+  <section id="p-perfil" class="pantalla"></section>
+  <section id="p-mes" class="pantalla"></section>
+</main>
+
+<nav>
+  <button data-p="avui"><span class="ic">☀</span><span data-t="Avui"></span></button>
+  <button data-p="setmana"><span class="ic">📅</span><span data-t="Setmana"></span></button>
+  <button data-p="perfil"><span class="ic">👤</span><span data-t="Perfil"></span></button>
+  <button data-p="mes"><span class="ic">⋯</span><span data-t="Més"></span></button>
+</nav>
+
+<div class="fons-modal" id="modal"><div class="modal" id="modal-cos"></div></div>
+<div id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

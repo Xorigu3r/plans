@@ -1,0 +1,19 @@
+{
+  "id": "./",
+  "name": "XoriguerAPPplans",
+  "short_name": "Xoriguer Plans",
+  "description": "El teu pla d'entrenament de Xoriguer (bici, córrer i trail) al mòbil.",
+  "lang": "ca",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0f14",
+  "theme_color": "#0b0f14",
+  "categories": ["sports", "health", "fitness"],
+  "icons": [
+    { "src": "icones/icona-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icones/icona-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icones/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
