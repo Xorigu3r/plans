@@ -2,9 +2,9 @@
  * Desa tota l'app (també Python i el nucli de Xoriguer) la primera vegada. Quan es publica una versió nova,
  * cal canviar VERSIO: el mòbil baixa la nova i esborra la vella. Les dades de l'usuari NO són aquí (són a
  * l'IndexedDB) i no es toquen mai. */
-const VERSIO = "xap-1.0.1";
+const VERSIO = "xap-1.0.2";
 const FITXERS = [
-  "./", "index.html", "app.js", "nucli.js", "nucli.zip", "manifest.json", "LLICENCIA.txt",
+  "./", "index.html", "marca/marca.css", "marca/Montserrat-ExtraBold.ttf", "app.js", "nucli.js", "nucli.zip", "manifest.json", "LLICENCIA.txt",
   "icones/icona-192.png", "icones/icona-512.png", "icones/maskable-512.png", "icones/apple-180.png",
   "fonts/Montserrat-SemiBold.ttf", "fonts/Montserrat-ExtraBold.ttf",
   "pyodide/pyodide.js", "pyodide/pyodide.asm.js", "pyodide/pyodide.asm.wasm", "pyodide/python_stdlib.zip",

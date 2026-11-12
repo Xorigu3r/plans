@@ -19,7 +19,7 @@
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; background: var(--negre); color: var(--text); }
-body { font-family: "Montserrat", system-ui, sans-serif; font-weight: 600; font-size: 15px; line-height: 1.45;
+body { font-family: "Segoe UI", "Segoe UI Variable", Roboto, system-ui, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.45;
        padding-bottom: calc(72px + env(safe-area-inset-bottom)); -webkit-tap-highlight-color: transparent; }
 h1, h2, h3 { font-weight: 800; margin: 0; }
 h1 { font-size: 22px; } h2 { font-size: 18px; } h3 { font-size: 15px; }
@@ -32,6 +32,8 @@ header { position: sticky; top: 0; z-index: 5; display: flex; align-items: cente
 header img { width: 34px; height: 34px; border-radius: 8px; }
 header .marca { font-weight: 800; font-size: 17px; letter-spacing: .2px; }
 header .marca b { color: var(--taronja); }
+header .marca { white-space: nowrap; }
+header .marca .xm-sub { font-size: 11px; letter-spacing: .18em; margin-left: 4px; }
 #estat { margin-left: auto; font-size: 12px; color: var(--suau); display: flex; align-items: center; gap: 6px; }
 #estat .punt { width: 8px; height: 8px; border-radius: 50%; background: var(--groc); }
 #estat.llest .punt { background: var(--verd); }
@@ -129,11 +131,12 @@ nav button.activa { color: var(--taronja); }
          background: var(--fons3); border: 1px solid var(--vora); padding: 10px 16px; border-radius: 12px; display: none; max-width: 90vw; }
 #toast.visible { display: block; }
 </style>
+  <link rel="stylesheet" href="marca/marca.css">
 </head>
 <body>
 <header>
   <img src="icones/icona-192.png" alt="">
-  <div class="marca">Xoriguer<b>APP</b>plans</div>
+  <div class="marca"><span class="xm-mot" aria-label="Xoriguer"><svg class="xm-x" viewBox="0 0 242 153" aria-hidden="true"><path fill="currentColor" d="M96.3,19.0 L94.7,18.0 L46.7,18.3 L50.7,25.0 L73.0,53.3 L91.3,78.7 L15.3,140.0 L0.3,151.0 L0.0,152.7 L48.3,152.7 L139.7,79.3 L136.7,73.3Z M146.3,87.0 L146.7,88.7 L130.0,109.3 L129.0,112.3 L122.7,118.7 L147.0,152.3 L195.7,152.7 L195.7,151.3 L173.7,123.3 L147.7,87.7Z"/><path fill="#FF8A00" d="M241.7,0.0 L199.3,0.0 L137.3,51.0 L137.0,52.7 L152.3,74.0Z"/><path fill="#F2650F" d="M146.7,88.3 L144.7,88.7 L109.3,118.0 L103.3,122.0 L85.7,136.7 L72.0,149.7 L76.0,148.7 L91.0,139.7 L123.0,118.0 L128.7,112.3 L129.7,109.3Z"/></svg><i class="xm-resta">ORIGUER</i></span> <span class="xm-sub">APP PLANS</span></div>
   <div id="estat"><span class="punt"></span><span id="estat-text"></span></div>
 </header>
 
